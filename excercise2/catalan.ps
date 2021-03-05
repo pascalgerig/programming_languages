@@ -1,0 +1,62 @@
+/LM 100 def % left margine
+/UM 700 def % upper margine
+/FS 18 def % font size
+
+/showNum {
+    /sBuf 20 string def % string buffer of length 20
+    sBuf cvs show % convert an integer to a string and show it
+} def
+
+
+/factorial{
+	dup 1 lt % n -> n bool
+	{ pop 1 } % 0 -> 1
+	{
+	    dup % n -> n n
+	    1 % -> n n 1
+	    sub % -> n (n-1)
+	    factorial % -> n (n-1)!NB: recursive lookup
+	    mul % n!
+    }
+    ifelse
+} def
+
+/newline {
+	currentpoint exch pop % get current y
+    FS 2 add sub % subtract offset
+    LM exch moveto % move to new x y
+} def
+
+/calculateCatalan {
+    dup
+    2 mul factorial % (2n)!
+    exch
+    dup
+    1 add factorial % (n + 1)!
+    exch
+    factorial mul % (n+1)! * n!
+    div % (2n)! / ((n+1)! * n!)
+} def
+
+/showCatalan {
+    % render one element as 'C(n = x) = y'
+    (C \( n = ) show % 'C(n = '
+    dup showNum % show n
+    ( \) = ) show % ') = '
+    calculateCatalan showNum % show catalan
+} def
+
+/catalan {
+    % results in 0 1 n {} for, where n is pushed to stack before call to this procedure
+	0 exch 1 exch {
+	    showCatalan % draw one element
+	    newline % go to next line
+    } for
+} def
+
+
+%Usage: n catalan
+/Times-Roman findfont FS scalefont setfont % set font
+LM UM moveto % move to proper positon from where to start drawing
+17 catalan % calculate 17 elements of catalan
+

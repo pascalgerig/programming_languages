@@ -1,0 +1,20 @@
+/LM 100 def % left margin
+/FS 18 def % font size
+/sBuf 20 string def % string buffer of length 20
+
+/calculate {
+    add 2 div 2 mul
+} def
+
+/print {
+    sBuf cvs show % convert an integer to a string and show it
+} def
+
+/calculateAndPrint {
+    /Times-Roman findfont FS scalefont setfont
+    LM 600 moveto
+    calculate
+    print
+} def
+
+16 32 calculateAndPrint
