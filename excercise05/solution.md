@@ -26,7 +26,7 @@ x [free]
 ```
 (λx.  (λz .  z y) x )(λx .  x)
 = (β reduction)
-(λx. x y )(λx .  x)
+(λz .  z y)(λx .  x)
 = (β reduction)
 (λx. x) y
 = (β reduction)
@@ -37,10 +37,12 @@ y
 (λx.  x x y)(λx .  x x y)
 = (β reduction)
 (λx .  x x y) (λx .  x x y) y
+= (β reduction (Notice that "Application is left-associative" - Slide 12))
+(λx .  x x y) (λx .  x x y) y y
 = (β reduction)
-(λx .  x x y) y y y
+(λx .  x x y) (λx .  x x y) y y y
 = (β reduction)
-y y y y y
+... (This will never terminate, thus there is no normal form)
 ```
 
 ```
