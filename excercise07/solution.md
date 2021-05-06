@@ -48,6 +48,10 @@ abstr. syntax
 ```
 Prog    ::= B
 B       ::= BD | D
+```
+
+domain
+```
 D       ::= 0 | 1
 ```
 
@@ -59,11 +63,6 @@ P ⟦ B ⟧ =   BIN ⟦ B ⟧
 BIN: B -> Int
 BIN ⟦ BD ⟧  = (BIN ⟦ B ⟧ * 2) + D
 BIN ⟦ D ⟧   = D
-```
-
-domain
-```
-TODO
 ```
 
 Test `10100`:
